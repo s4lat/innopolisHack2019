@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block css %}<link rel="stylesheet" href="../static/css/style.css">{% endblock %}
+{% block content %}
+
+	{% if errors is defined %}
+  	<ul class="center">
+	  	{% for e in errors %}
+	  	<li> <p class="error"> {{ e }} </p> </li>
+	  	{% endfor %}
+	</ul>
+	{% endif %}
+	
+	<center>
+		<form class="form-inline" action="{{url_for('add_user')}}" method="POST">
+			<div class="form-group">
+
+			  <label for>Добавить нового пользователя:</label><br>
+			  <input style="margin-top: 6px;" class="form-control input-sm" type="text" name="first", placeholder="Имя"/>
+			  <input style="margin-top: 6px;" class="form-control input-sm" type="text" name="last", placeholder="Фамиля"/>
+			  <input style="margin-top: 6px;" class="form-control input-sm" type="text" name="patronymic", placeholder="Отчество"/>
+			  <input style="margin-top: 6px;" class="form-control input-sm" type="email" name="email", placeholder="Email"/>
+			  <input style="margin-top: 6px;" class="form-control input-sm" type="text" name="phone", placeholder="Телефон"/>
+			  <input style="margin-top: 6px;" class="form-control input-sm" type="text" name="other", placeholder="Доп.Информация"/>
+			  <select style="margin-top: 6px;" class="form-control input-sm" name="role", placeholder="Роль">
+			  	<option value="user">user</option>
+			    <option value="admin">admin</option>
+			  </select>
+			  <br><br><button type="submit" class="btn btn-success btn-sm">Добавить</button>
+			</div>
+		</form>
+	</center>
+
+	<ul class="pagelist">
+	{% for i in range(1, n_pages+1) %}
+		<li><a href="{{url_for('users', page=i)}}", >
+			{% if i == current_page %}
+			<b>{{i}}</b>
+			{% else %}
+			{{i}}
+			{% endif %}
+			</a>
+		</li>
+	{% endfor %}
+	</ul>
+
+	<div class="table-responsive">
+	<table class="table table-hover table-condensed" style="width:150%">
+		<thead>
+			<tr>
+				<th></th> 
+				<th> Имя </th> 
+				<th> Фамилия </th>
+				<th> Отчество </th>
+				<th> Email </th>
+				<th> Телефон </th>
+				<th> Роль </th>
+				<th> Доп.инфа </th>
+			</tr>
+		</thead>
+		{% for user in users %}
+			<tr>
+				<td>
+					<form class="form-group" action="{{url_for('del_user')}}" method="POST">
+						<button name="email" value="{{ user[3] }}" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></button>
+					</form>
+				</td>
+				<td>{{ user[0] }}</td>
+				<td>{{ user[1] }}</td>
+				<td>{{ user[2] }}</td>
+				<td>{{ user[3] }}</td>
+				<td>{{ user[4] }}</td>
+				<td>{{ user[7] }}</td>
+				<td>{{ user[5] }}</td>
+			</tr>
+		{% endfor %}
+	</table></div>
+
+
+	<ul class="pagelist">
+	{% for i in range(1, n_pages+1) %}
+		<li><a href="{{url_for('users', page=i)}}", >
+			{% if i == current_page %}
+			<b>{{i}}</b>
+			{% else %}
+			{{i}}
+			{% endif %}
+			</a>
+		</li>
+	{% endfor %}
+	</ul>
+
+	{% if user %}
+		<script>
+			var $link = $("<a />");  
+
+			$link
+				.attr( "download", "{{user[3]}}.txt" )
+				.attr("href", "data:application/txt," + encodeURIComponent(`Имя: {{user[0]}}
+Фамилия: {{user[1]}}
+Отчество: {{user[2]}}
+Email: {{user[3]}}
+Телефон: {{user[4]}}
+Пароль: {{user[5]}}`), "_self")
+				.appendTo( "body" )
+				.get(0)
+				.click()
+
+		</script>
+	{% endif %}
+
+{% endblock %}

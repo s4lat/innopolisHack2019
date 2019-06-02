@@ -1,0 +1,6 @@
+DB_FILENAME = "db.sqlite3"
+SOURCE_VIDEOS_FOLDER = "videos/source/"
+HLS_VIDEOS_FOLDER = "static/videos/"
+ALLOWED_EXTENSIONS = ["mp4"]
+U_PAGE_ROWS = 30
+V_PAGE_ROWS = 5

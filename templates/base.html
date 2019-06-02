@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} {% endblock %} </title>
+  <link rel='stylesheet' href='static/css/reset.css'>
+  <link rel='stylesheet prefetch' href='static/css/bootstrap.min.css'>
+  {% block css %} {% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-expand-md sidebarNavigation navbar-fixed-top" data-sidebarClass="navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle left-navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="/">Курсы-онлайн</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+          {% if not current_user.is_authenticated %}
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Войти</a></li>
+            </ul>
+          {% else %}
+            <ul class="nav navbar-nav">
+              <li><a href="/"><span class="glyphicon glyphicon-user"></span> {{ current_user.email }} </a></li>
+              <li><a href="{{url_for('videos')}}">Видеозаписи</a></li>
+              {% if "admin" == current_user.role %}
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Панель Админа<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{url_for('users')}}">Список пользователей</a></li>
+                  </ul>
+                </li>
+              {% endif %}
+            </ul>
+        
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Выйти </a></li>
+            </ul>
+          {% endif %}
+      </div>
+    </div>
+  </nav>
+
+
+  <script src='../static/js/jquery-3.3.1.min.js'></script>
+  <script src='../static/js/bootstrap.min.js'></script>
+  
+  <div class="content">
+  {% block content %} {% endblock %}
+  </div>
+
+</body>
+
+</html>

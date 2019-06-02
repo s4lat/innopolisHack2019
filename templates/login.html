@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block css %}<link rel="stylesheet" href="../static/css/style.css">{% endblock %}
+{% block content %}
+  	{% if errors is defined %}
+  	<ul class="center">
+	  	{% for e in errors %}
+	  	<li> <p class="error"> {{ e }} </p> </li>
+	  	{% endfor %}
+	</ul>
+	{% endif %}
+	<h3 class="center"> <b>Вход</b></h3>
+	<div class="input-group" style="width: 30%; margin:0 auto">
+	  	<form method="POST" action="{{url_for('login')}}" >
+		  <div class="form-group">
+		    <label for="emailForm">Email:</label>
+		    <input  id="emailForm" type="email" class="form-control" name="email" placeholder="Введите email" required>
+		  </div>
+		  <div class="form-group">
+		    <label for="paswForm">Пароль:</label>
+		    <input id="paswform" type="password" class="form-control" name="passw" placeholder="Пароль" required>
+		  </div>
+		  <div class="form-check">
+		    <input id="rememberMe" type="checkbox" class="form-check-input" name="remember">
+		    <label class="form-check-label" for="rememberMe">Запомнить меня</label>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Войти</button>
+		</form>
+	</div>
+{% endblock %}

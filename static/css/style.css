@@ -1,0 +1,44 @@
+body{
+	font-family: larger Lato, Roboto, sans-serif;
+	padding-top: 65px; 
+}
+
+.pagelist{
+	margin: 0 auto;
+	width: 50%;
+	text-align:center;
+}
+
+.pagelist li{
+	display: inline;
+	padding-left: 0.1% ;
+	font-size: 120%;
+}
+
+.error {
+	color: red;
+}
+
+.table {
+	margin: 0 auto;
+}
+
+.center {
+    text-align:center;
+}
+
+.center form {
+    display:inline-block;
+}
+
+@media (min-width: 1100px) {
+    .content{
+	margin: 0 auto;
+	width: 50%;
+}
+
+@media (max-width: 1100px) {
+    .content{
+	margin: 0 auto;
+	width: 100%;
+}
