@@ -1,6 +1,6 @@
 # innopolisHack2019
 ## Заказчик Максим
-### PDF с описанием - [link](https://github.com/s4lat/innopolisHack2019/blob/master/Описание%20проекта.pdf)
+### PDF с описанием - [link](https://github.com/s4lat/innopolisHack2019/blob/master/Описание.pdf)
 
 Клонируете репозиторий: 
 ```
