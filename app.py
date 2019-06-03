@@ -9,7 +9,7 @@ from functools import partial
 from dbhelper import DB
 from math import ceil
 import random as rand
-import bcrypt, cfg, os, shutil
+import bcrypt, cfg, os, shutil, json
 
 try:
     from BytesIO import BytesIO

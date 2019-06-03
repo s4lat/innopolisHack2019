@@ -15,7 +15,7 @@ from app import db
 def mp4_to_HLS(path, dest):
 	input_stream = ffmpeg.input(path, f='mp4')
 	output_stream = ffmpeg.output(input_stream, dest, format='hls', start_number=0, hls_time=5, hls_list_size=0, 
-		segment_time=10, max_reload=10, hls_key_info_file="static/hls_keys/enc.keyinfo", loglevel="error", hls_flags="periodic_rekey")
+		segment_time=10, max_reload=10, hls_key_info_file="static/hls_keys/enc.keyinfo", loglevel="error")
 	ffmpeg.run(output_stream)
 
 def regenKey():
@@ -33,7 +33,7 @@ regenKey()
 def hlsThread():
 	counter = 0
 	while True:
-		schedule.every(15).seconds.do(regenKey)
+		schedule.every(10).seconds.do(regenKey)
 		schedule.run_continuously()
 
 		videos = db.getNewVideos()

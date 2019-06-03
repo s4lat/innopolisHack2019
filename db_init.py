@@ -31,7 +31,7 @@ conn.execute( """CREATE TABLE videos (
 
 conn.commit()
 
-admin_pass = "".join([rand.choice(ascii_letters+digits) for i in range(16)])
+admin_pass = "SECret21672"
 passh = bcrypt.hashpw(admin_pass.encode('utf-8'), bcrypt.gensalt())
 
 user = ('Аминистратор', 'Аминистраторов', 'Аминистраторович', 'admin@gmail.com',

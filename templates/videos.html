@@ -10,8 +10,9 @@
 <!-- CSS  -->
  
 <!-- HTML -->
+{% if current_user.role == "admin" %}
 <center>
-	<h3>Загрузить новое видео</h3>
+	<h3>Загрузить новое видео(только mp4)</h3>
 	<form сlass="form-inline" style="width: 50%;" action="/upload_video" method=post enctype=multipart/form-data>
 		<div class="form-group">
 			<input style="margin-top: 6px;" class="form-control input-sm" type=file name=file>
@@ -19,6 +20,7 @@
 		</div>
 	</form>
 </center>
+{% endif %}
 
 <ul class="pagelist">
 	{% for i in range(1, n_pages+1) %}
@@ -48,7 +50,7 @@
 		<video id='video{{video[-1]}}' class="video-js vjs-default-skin" width="400%" height="200%" controls>
 		</video>
 	{% else %}
-		<h4>{{video[0]}} {% if video[-2]=="in_progress" %}(Обрабатывается){% else %}(В очереди){% endif %}</h4>
+		<h4>{{video[0]}} {% if video[-2]=="in_progress" %}(Обрабатывается){% else %}(В очереди на обработку){% endif %}</h4>
 	{% endif %}
 	{% endfor %}
 </center>

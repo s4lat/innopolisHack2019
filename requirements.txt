@@ -1,7 +1,6 @@
-Jinja2==2.10
-Werkzeug==0.15.0
-Flask==1.0.2
-python_bcrypt==0.3.2
-ffmpeg==1.4
-flask_login==0.4.1
+flask
+ffmpeg-python
+flask_login
+bcrypt
+gunicorn
 git+https://github.com/mrhwick/schedule
