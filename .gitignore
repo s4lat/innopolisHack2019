@@ -1,5 +1,4 @@
 __pycache__/
-videos/
 env/
 db.sqlite3
 *.log

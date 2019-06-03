@@ -30,8 +30,7 @@ static/hls_keys/enc(%s).key
 
 regenKey()
 
-def hlsThread():
-	counter = 0
+def hlsWorker():
 	while True:
 		schedule.every(10).seconds.do(regenKey)
 		schedule.run_continuously()
@@ -53,9 +52,21 @@ def hlsThread():
 
 		time.sleep(15)
 
+def hlsThread():
+	worker = threading.Thread(target=hlsWorker, daemon=True)
+	worker.start()
+	time.sleep(0.5)
+	while True:
+		if not worker.is_alive():
+			worker = threading.Thread(target=hlsWorker, daemon=True)
+			worker.start()
+		time.sleep(10)
+		
+
+
 def runHlsThread():
-    thread = threading.Thread(target=hlsThread, daemon=True)
-    thread.start()
+	thread = threading.Thread(target=hlsThread, daemon=True)
+	thread.start()
 
 
 
