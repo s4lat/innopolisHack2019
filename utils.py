@@ -50,7 +50,7 @@ def hlsWorker():
 
 		schedule.clear()
 
-		time.sleep(120)
+		time.sleep(60)
 
 def hlsThread():
 	worker = threading.Thread(target=hlsWorker, daemon=True)
