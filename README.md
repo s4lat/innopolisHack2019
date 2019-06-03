@@ -1,6 +1,6 @@
 # innopolisHack2019
 ## Заказчик Максим
-### PDF с описанием - https://github.com/s4lat/innopolisHack2019/blob/master/Description.pdf
+### PDF с описанием - [Ссылка](https://github.com/s4lat/innopolisHack2019/blob/master/Description.pdf)
 
 Собираете образ с помощью Dockerfile'а:
 
